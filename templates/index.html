@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    /* Custom styles for movie cards */
+    .card {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 11rem;
+    }
+    
+    .card img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        max-height: 1500px; /* Limit image height */
+        width: 100%; /* Ensure image fills the card width */
+        object-fit: cover; /* Maintain aspect ratio and fill the available space */
+    }
+    
+    .card .card-body {
+        padding: 15px;
+    }
+    
+    .card .card-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .card .card-text {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+    
+    .card .btn {
+        font-size: 0.8em;
+        padding: 5px 15px;
+    }
+    </style>
+    
+    <div class="container">
+        <div class="row">
+            {% for i in movie_list %}
+            <div class="col-md-2"> <!-- Adjusted col-md-2 instead of col-md-3 -->
+                <div class="card" >
+                    <img class="card-img-top" src="{{i.img.url}}" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ i.name }}</h5>
+                      <p class="card-text">{{ i.price }}</p>
+                      <a href="{% url 'detail' i.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+    
+
+{% endblock %}
+
